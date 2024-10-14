@@ -1,5 +1,9 @@
 import Foundation
 
+@attached(memberAttribute)
+public macro TimeMeasureable() = #externalMacro(module: "MeasuringMethodExecutionTimeMacros", type: "TimeMeasureableMacro")
+
+/// - Warning: Cannot be attached to  global function.
 @attached(body)
 public macro MeasureTime() = #externalMacro(module: "MeasuringMethodExecutionTimeMacros", type: "MeasureTimeMacro")
 

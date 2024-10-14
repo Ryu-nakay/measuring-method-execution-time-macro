@@ -3,6 +3,28 @@ import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
+public struct TimeMeasureableMacro: MemberAttributeMacro {
+    // MemberAttributeMacro's expansion
+    public static func expansion(
+        of node: SwiftSyntax.AttributeSyntax,
+        attachedTo declaration: some SwiftSyntax.DeclGroupSyntax,
+        providingAttributesFor member: some SwiftSyntax.DeclSyntaxProtocol,
+        in context: some SwiftSyntaxMacros.MacroExpansionContext
+    ) throws -> [SwiftSyntax.AttributeSyntax] {
+        guard let _ = member.as(FunctionDeclSyntax.self) else {
+            return []
+        }
+
+        return [
+            AttributeSyntax(
+                attributeName: IdentifierTypeSyntax(
+                    name: .identifier("MeasureTime")
+                )
+            ),
+        ]
+    }
+}
+
 public struct MeasureTimeMacro: BodyMacro {
     // BodyMacro's expansion
     public static func expansion(
@@ -62,5 +84,6 @@ public struct MeasureTimeMacro: BodyMacro {
 struct MeasuringMethodExecutionTimeMacroPlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         MeasureTimeMacro.self,
+        TimeMeasureableMacro.self,
     ]
 }

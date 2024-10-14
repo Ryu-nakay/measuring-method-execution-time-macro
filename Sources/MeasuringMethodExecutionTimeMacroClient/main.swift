@@ -6,33 +6,36 @@ Fuga().test()
 Fuga.foo()
 Piyo.foo()
 
+@TimeMeasureable
 struct Hoge {
-    @MeasureTime
+    let a = 0
+
     func test() {
         print("Hello world")
     }
 
-    @MeasureTime
-    static func foo() {
-        print("Hello world")
+    @discardableResult
+    static func foo() -> String {
+        return "Hello world"
     }
 }
 
+@TimeMeasureable
 class Fuga {
-    @MeasureTime
     func test() {
         print("Hello world")
     }
 
-    @MeasureTime
-    static func foo() {
-        print("Hello world")
+    @discardableResult
+    static func foo() -> String {
+        return "Hello world"
     }
 }
 
+@TimeMeasureable
 enum Piyo {
-    @MeasureTime
-    static func foo() {
-        print("Hello world")
+    @discardableResult
+    static func foo() -> String {
+        return "Hello world"
     }
 }
