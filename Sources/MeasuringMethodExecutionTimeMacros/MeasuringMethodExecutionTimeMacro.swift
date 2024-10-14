@@ -29,7 +29,7 @@ public struct MeasureTimeMacro: BodyMacro {
                 if item.is(ReturnStmtSyntax.self) {
                     existReturFlag = true
                     return """
-                    measureTimeMacroLogger.stop()
+                    measureTimeMacroLogger.stop(className: "\\(type(of: self))")
                     \(item)
                     """
                 } else {
@@ -44,7 +44,7 @@ public struct MeasureTimeMacro: BodyMacro {
             callLoggerAddedCode.append(
                 """
                 \n
-                measureTimeMacroLogger.stop()
+                measureTimeMacroLogger.stop(className:  "\\(type(of: self))")
                 """
             )
         }

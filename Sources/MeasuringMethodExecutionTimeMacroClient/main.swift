@@ -1,8 +1,38 @@
 import MeasuringMethodExecutionTimeMacro
 
-test()
+Hoge().test()
+Hoge.foo()
+Fuga().test()
+Fuga.foo()
+Piyo.foo()
 
-@MeasureTime
-func test() {
-    print("Hello world")
+struct Hoge {
+    @MeasureTime
+    func test() {
+        print("Hello world")
+    }
+
+    @MeasureTime
+    static func foo() {
+        print("Hello world")
+    }
+}
+
+class Fuga {
+    @MeasureTime
+    func test() {
+        print("Hello world")
+    }
+
+    @MeasureTime
+    static func foo() {
+        print("Hello world")
+    }
+}
+
+enum Piyo {
+    @MeasureTime
+    static func foo() {
+        print("Hello world")
+    }
 }

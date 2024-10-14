@@ -10,10 +10,10 @@ public struct MeasureTimeLogger {
         self.startTime = Date.now
     }
 
-    public func stop() {
+    public func stop(className: String, functionName: String = #function) {
         let endTime = Date.now
         let diff = Double(endTime.timeIntervalSince(startTime))
         let roundedDiff = round(diff * 1000_000_000) / 1000_000
-        print("\(roundedDiff) ms")
+        print("📝 \(className).\(functionName) / ⏱️ \(roundedDiff) ms")
     }
 }
