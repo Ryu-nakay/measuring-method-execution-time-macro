@@ -42,10 +42,6 @@ public struct MeasureTimeMacro: BodyMacro {
 
         var existReturFlag: Bool = false
 
-        let returnStatement = codeBlockItems
-            .map { $0.as(ReturnStmtSyntax.self)}
-            .compactMap { $0 }
-
         var callLoggerAddedCode = codeBlockItems
             .map { item in
                 if item.is(ReturnStmtSyntax.self) {
